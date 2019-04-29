@@ -1,7 +1,8 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-HUMIDITY=$(cat /sys/bus/iio/devices/iio\:device0/in_humidityrelative_input)
-HUMIDITY_OUT=$(cat /sys/bus/iio/devices/iio\:device1/in_humidityrelative_input)
-
-echo $HUMIDITY
-echo $HUMIDITY_OUT
+DEVICES=$(ls -d /sys/bus/iio/devices/*)
+arr=$(echo $DEVICES | tr " " "\n")
+for x in $arr
+do
+        echo $(cat ${x}/in_humidityrelative_input)
+done
