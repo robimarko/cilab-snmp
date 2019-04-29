@@ -1,8 +1,12 @@
 #!/usr/bin/env sh
 
-STATION0_COUNT=$(iw dev wlan0 station dump | grep Station | wc -l)
-STATION1_COUNT=$(iw dev wlan1 station dump | grep Station | wc -l)
+STATION_COUNT=0
 
-STATION_COUNT=$(($STATION0_COUNT+$STATION1_COUNT))
+WLANS=$(iw dev | grep Interface | cut -d " " -f 2)
+arr=$(echo $WLANS | tr " " "\n")
+for x in $arr
+do
+        STATION_COUNT=$((STATION_COUNT+$(iw dev ${x} station dump | grep Station | wc -l)))
+done
 
 echo $STATION_COUNT
