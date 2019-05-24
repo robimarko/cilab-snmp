@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 DEVICES=$(ls -d /sys/bus/iio/devices/*)
 arr=$(echo $DEVICES | tr " " "\n")
