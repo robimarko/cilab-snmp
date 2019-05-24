@@ -62,6 +62,7 @@ elif command == 'ADCGAIN2':
 elif command == 'Dump':
 	with open('/tmp/bms-dump.json', 'w') as json_file:  
 		json.dump(json_dict, json_file)
+		json_file.close()
 elif command == 'SNMP':
 	with open('/tmp/bms.json', 'w') as json_file:  
 		json_file.write('Voltage: {0}\n'.format(json_data.BattVoltage))
