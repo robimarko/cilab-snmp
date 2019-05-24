@@ -60,5 +60,11 @@ elif command == 'ADCOFFSET':
 elif command == 'ADCGAIN2':
 	print(json_data.ADCGAIN2)
 elif command == 'Dump':
-	with open('/tmp/bms.json', 'w') as json_file:  
+	with open('/tmp/bms-dump.json', 'w') as json_file:  
 		json.dump(json_dict, json_file)
+elif command == 'SNMP':
+	with open('/tmp/bms.json', 'w') as json_file:  
+		json_file.write('Voltage: {0}\n'.format(json_data.BattVoltage))
+		json_file.write('Current: {0}\n'.format(json_data.Current))
+		json_file.write('Temperature: {0}\n'.format(json_data.Temperature))
+		json_file.close()
