@@ -13,6 +13,7 @@ class Test(object):
     def __init__(self, data):
 	    self.__dict__ = json.loads(data)
 json_data = Test(stat)
+json_dict = json.loads(stat)
 
 if command == 'Version':
 	print(json_data.Version)
@@ -58,3 +59,6 @@ elif command == 'ADCOFFSET':
 	print(json_data.ADCOFFSET)
 elif command == 'ADCGAIN2':
 	print(json_data.ADCGAIN2)
+elif command == 'Dump':
+	with open('/tmp/bms.json', 'w') as json_file:  
+		json.dump(json_dict, json_file)
