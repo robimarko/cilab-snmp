@@ -88,25 +88,7 @@ uci set snmpd.@exec[-1].name=humidity
 uci set snmpd.@exec[-1].prog=/etc/snmp/humidity.sh   
 uci set snmpd.@exec[-1].miboid=.1.3.6.1.4.1.51510.14.3
 
-uci add snmpd exec
-uci set snmpd.@exec[-1].name=bms-voltage
-uci set snmpd.@exec[-1].prog=/etc/snmp/bms.sh Voltage
-uci set snmpd.@exec[-1].miboid=.1.3.6.1.4.1.51510.15.1
-
-uci add snmpd exec
-uci set snmpd.@exec[-1].name=bms-current
-uci set snmpd.@exec[-1].prog=/etc/snmp/bms.sh Current
-uci set snmpd.@exec[-1].miboid=.1.3.6.1.4.1.51510.15.2
-
-uci add snmpd exec
-uci set snmpd.@exec[-1].name=bms-temperature
-uci set snmpd.@exec[-1].prog=/etc/snmp/bms.sh Temperature
-uci set snmpd.@exec[-1].miboid=.1.3.6.1.4.1.51510.15.3
-
 uci commit
-
-echo "*/5 * * * * /etc/snmp/bms.py SNMP" >> /etc/crontabs/root
-echo "#This is BMS parser" >> /etc/crontabs/root
 
 /etc/init.d/cron restart
 /etc/init.d/cron enable
